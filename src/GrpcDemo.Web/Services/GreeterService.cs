@@ -1,5 +1,5 @@
 using Grpc.Core;
-using GrpcDemo.Web;
+using GrpcDemo.Greet;
 
 namespace GrpcDemo.Web.Services;
 
@@ -18,4 +18,4 @@ public class GreeterService : Greeter.GreeterBase
             Message = "Hello " + request.Name
         });
     }
-// }
+}
