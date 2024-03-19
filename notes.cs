@@ -8,3 +8,12 @@ builder.Services.AddGrpc(options =>
 builder.Services.AddControllers();
 
 app.MapControllers();
+
+
+
+builder.WebHost.ConfigureKestrel(kestrel =>
+{
+    kestrel.ListenAnyIP(5000, listenOptions => listenOptions.Protocols = HttpProtocols.Http1);
+    kestrel.ListenAnyIP(5001, listenOptions => listenOptions.Protocols = HttpProtocols.Http2);
+});
+
