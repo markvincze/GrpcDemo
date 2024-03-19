@@ -5,11 +5,11 @@ namespace GrpcDemo.Web.Interceptors;
 
 public class LoggingInterceptor : Interceptor
 {
-    private readonly ILogger _logger;
+    private readonly ILogger logger;
 
     public LoggingInterceptor(ILogger<LoggingInterceptor> logger)
     {
-        _logger = logger;
+        this.logger = logger;
     }
 
     public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
@@ -17,7 +17,7 @@ public class LoggingInterceptor : Interceptor
         ServerCallContext context,
         UnaryServerMethod<TRequest, TResponse> continuation)
     {
-        _logger.LogInformation("Processing call: {Type} / {Method}", MethodType.Unary, context.Method);
+        logger.LogInformation("Processing call: {Type} / {Method}", MethodType.Unary, context.Method);
 
         try
         {
@@ -25,7 +25,7 @@ public class LoggingInterceptor : Interceptor
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error thrown by {context.Method}.");
+            logger.LogError(ex, $"Error thrown by {context.Method}.");
             throw;
         }
     }

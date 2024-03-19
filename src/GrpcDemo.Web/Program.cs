@@ -4,10 +4,7 @@ using GrpcDemo.Web.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddGrpc(options =>
-{
-    options.Interceptors.Add<LoggingInterceptor>();
-});
+builder.Services.AddGrpc();
 
 var app = builder.Build();
 
